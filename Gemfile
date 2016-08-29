@@ -43,3 +43,5 @@ group :development, :test do
   gem 'spring'
 end
 
+# Use Rails 12factor
+gem 'rails_12factor', group: :production
