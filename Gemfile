@@ -45,3 +45,6 @@ end
 
 # Use Rails 12factor
 gem 'rails_12factor', group: :production
+
+# Use foundation-rails
+gem 'foundation-rails'
