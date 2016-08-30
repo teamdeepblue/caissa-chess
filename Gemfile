@@ -45,3 +45,6 @@ end
 
 # Use Rails 12factor
 gem 'rails_12factor', group: :production
+
+# Use RuboCop to enforce Ruby style guidelines
+gem 'rubocop', '~> 0.42.0', require: false
