@@ -48,3 +48,6 @@ gem 'rails_12factor', group: :production
 
 # Use RuboCop to enforce Ruby style guidelines
 gem 'rubocop', '~> 0.42.0', require: false
+
+#Use devise for user authentication (specify new version because older ones cause problems with Heroku)
+gem 'devise', '>= 3.2.4'
