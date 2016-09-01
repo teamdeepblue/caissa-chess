@@ -1,4 +1,4 @@
-https://codeship.com/projects/d2f141b0-5207-0134-86f7-325cd45b0ee2/status?branch=master
+[ ![Codeship Status for teamdeepblue/caissa-chess](https://codeship.com/projects/d2f141b0-5207-0134-86f7-325cd45b0ee2/status?branch=master)](https://codeship.com/projects/171427)
 
 == README
 
