@@ -1,4 +1,4 @@
 class Game < ActiveRecord::Base 
-	has_many :places 
+	has_many :pieces 
 	has_many :players 
 end
