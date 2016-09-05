@@ -41,6 +41,9 @@ group :development, :test do
 
   # Use Rspec for TDD
   gem 'rspec-rails', '~> 3.5'
+
+  # Use FactoryGirl for TDD
+  gem 'factory_girl_rails', '~> 4.0'
 end
 
 # Access an IRB console on exception pages or by using <%= console %> in views
