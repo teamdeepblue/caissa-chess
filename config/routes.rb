@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
+  ##devise_for :users
+  ## OAuth integration, Sep 4,2016 -- Shreyams
+  devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
+  ##
+
   root 'home#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
