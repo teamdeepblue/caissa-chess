@@ -1,7 +1,7 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  #Configure action mailer for devise user authentication
+  # Configure action mailer for devise user authentication
   config.action_mailer.default_url_options = { host: 'localhost:3030' }
 
   # In the development environment your application's code is reloaded on
