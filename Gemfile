@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
 # Use postgresql as the database for Active Record
@@ -58,5 +57,5 @@ gem 'rubocop', '~> 0.42.0', require: false
 # Use foundation-rails
 gem 'foundation-rails'
 
-#Use devise for user authentication (specify new version because older ones cause problems with Heroku)
+# Use devise for user authentication (specify new version because older ones cause problems with Heroku)
 gem 'devise', '>= 3.2.4'
