@@ -57,3 +57,7 @@ gem 'foundation-rails'
 
 #Use devise for user authentication (specify new version because older ones cause problems with Heroku)
 gem 'devise', '>= 3.2.4'
+
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'figaro', '>= 1.0.0'
