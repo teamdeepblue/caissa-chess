@@ -1,4 +1,4 @@
-class Player < ActiveRecord::Base 
-	belongs_to :user
-	belongs_to :game 
+class Player < ActiveRecord::Base
+  belongs_to :user
+  belongs_to :game
 end

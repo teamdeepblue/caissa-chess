@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
 # Use postgresql as the database for Active Record
@@ -41,7 +40,7 @@ group :development, :test do
 end
 
 # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0', group: :development
+gem 'web-console', '~> 2.0', group: :development
 
 # Use Rails 12factor
 gem 'rails_12factor', group: :production
@@ -49,5 +48,5 @@ gem 'rails_12factor', group: :production
 # Use RuboCop to enforce Ruby style guidelines
 gem 'rubocop', '~> 0.42.0', require: false
 
-#Use devise for user authentication (specify new version because older ones cause problems with Heroku)
+# Use devise for user authentication (specify new version because older ones cause problems with Heroku)
 gem 'devise', '>= 3.2.4'
