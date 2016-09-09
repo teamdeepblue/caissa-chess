@@ -37,6 +37,9 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  # Use Rspec for TDD
+  gem 'rspec-rails', '~> 3.5'
 end
 
 # Access an IRB console on exception pages or by using <%= console %> in views
@@ -48,5 +51,13 @@ gem 'rails_12factor', group: :production
 # Use RuboCop to enforce Ruby style guidelines
 gem 'rubocop', '~> 0.42.0', require: false
 
+<<<<<<< HEAD
+=======
+# Use foundation-rails
+gem 'foundation-rails'
+
+>>>>>>> master
 # Use devise for user authentication (specify new version because older ones cause problems with Heroku)
 gem 'devise', '>= 3.2.4'
+
+gem 'simple_form'
