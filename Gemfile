@@ -43,6 +43,8 @@ group :development, :test do
 
   # Use Rspec for TDD
   gem 'rspec-rails', '~> 3.5'
+
+  gem 'factory_girl_rails', '~> 4.0'
 end
 
 # Access an IRB console on exception pages or by using <%= console %> in views
@@ -59,3 +61,5 @@ gem 'foundation-rails'
 
 # Use devise for user authentication (specify new version because older ones cause problems with Heroku)
 gem 'devise', '>= 3.2.4'
+
+gem 'simple_form'
