@@ -6,7 +6,7 @@ RSpec.describe Piece, type: :model do
       game = Game.create()
       piece = Piece.create(game_id: game.id, x_position: 0, y_position: 0)
       Piece.create(game_id: game.id, x_position: 3, y_position: 0)
-      Piece.create(game_id: game.id, x_position: 7, y_position: 0)
+      Piece.create(game_id: game.id, x_position: 6, y_position: 0)
       expect(piece.is_obstructed?(7, 0)).to be true
     end
 
