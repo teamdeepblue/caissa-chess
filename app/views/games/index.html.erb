@@ -1,0 +1,13 @@
+<h1>Caissa Chess</h1>
+<br />
+<% @games.each do |game| %>
+ <div>
+   <h2><%= game.name %></h2>
+   <br />
+   <p>Join this game and play against <%= game.players.first %>!</p>
+   <br />
+   <%= link_to "Start playing", root_path %>
+   <br />
+   <br />
+ </div>
+<% end %>
