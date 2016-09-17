@@ -1,26 +1,26 @@
+<% array = ["A","B","C","D","E","F","G","H"] %>
 <table id = "ChessBoard"> 
 <% 8.times.each do |number| %> 
 	<% if number% 2 ==0 %>  
 		<tr> 
-			<td class = "white" id = "A<%= number+1 %>"</td> 
-			<td class = "black" id = "B<%= number+1 %>"></td> 
-			<td class = "white" id = "C<%= number+1 %>"></td> 
-			<td class = "black" id = "D<%= number+1 %>"></td> 
-			<td class = "white" id = "E<%= number+1 %>"></td> 
-			<td class = "black" id = "F<%= number+1 %>"></td> 
-			<td class = "white" id = "G<%= number+1 %>"></td> 
-			<td class = "black" id = "H<%= number+1 %>"></td> 
+			<% 8.times.each do |square| %>  
+				<% if square %2 == 0 %> 
+					<td class = "white" id = "<%= array[square]%><%= number+1 %>"></td> 
+				<% else %> 
+					<td class = "black" id = "<%= array[square]%><%= number+1 %>"></td> 
+				<%end%> 
+
+			<%end%> 
 		<tr> 
 	<% else %> 
 		<tr> 
-			<td class = "black" id = "A<%= number+1 %>"></td> 
-			<td class = "white" id = "B<%= number+1 %>"></td> 
-			<td class = "black" id = "C<%= number+1 %>"></td> 
-			<td class = "white" id = "D<%= number+1 %>"></td> 
-			<td class = "black" id = "E<%= number+1 %>"></td> 
-			<td class = "white" id = "F<%= number+1 %>"></td> 
-			<td class = "black" id = "G<%= number+1 %>"></td> 
-			<td class = "white" id = "H<%= number+1 %>"></td> 
+			<% 8.times.each do |square| %> 
+					<% if square %2 == 0 %> 
+						<td class = "black" id = "<%= array[square]%><%= number+1 %>"></td> 
+					<% else %> 
+						<td class = "white" id = "<%= array[square]%><%= number+1 %>"></td> 
+					<%end%> 
+			<%end%> 
 		</tr> 
 	<%end%> 
 <%end%> 
