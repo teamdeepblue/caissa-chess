@@ -13,7 +13,6 @@ RSpec.describe Piece, type: :model do
     it "should detect an obstructing piece vertically" do
       game = Game.create
       piece = Piece.create(game_id: game.id, x_position: 0, y_position: 0)
-      # byebug
       Piece.create(game_id: game.id, x_position: 0, y_position: 2)
       Piece.create(game_id: game.id, x_position: 0, y_position: 6)
       expect(piece.is_obstructed?(0, 7)).to be true
