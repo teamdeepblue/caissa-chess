@@ -17,5 +17,4 @@ class GamesController < ApplicationController
   def game_params
     params.require(:game).permit(:name)
   end
->>>>>>> master
 end
