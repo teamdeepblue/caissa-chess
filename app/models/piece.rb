@@ -10,12 +10,8 @@ class Piece < ActiveRecord::Base
     pieces = []
 
     if moving_horizontally?
-      x_start = x_position + 1
-      x_end = x_destination - 1
       pieces = Piece.where(game_id: game.id, y_position: y_start, x_position: (x_start + 1..x_destination - 1)).exists?
     elsif moving_vertically?
-      y_start = y_position + 1
-      y_end = y_destination - 1
       pieces = Piece.where(game_id: game.id, x_position: x_start, y_position: (y_start + 1..y_destination - 1)).exists?
     elsif moving_diagonally?    # needs word
       (x_start + 1..x_destination - 1).each do |x|
