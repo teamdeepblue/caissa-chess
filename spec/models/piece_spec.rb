@@ -10,7 +10,7 @@ RSpec.describe Piece, type: :model do
       expect(piece.is_obstructed?(7, 0)).to be true
     end
 
-    it "should detect an obstructing piece vertically" do
+    it 'should detect an obstructing piece vertically' do
       game = Game.create
       piece = Piece.create(game_id: game.id, x_position: 0, y_position: 0)
       Piece.create(game_id: game.id, x_position: 0, y_position: 2)
@@ -18,7 +18,7 @@ RSpec.describe Piece, type: :model do
       expect(piece.is_obstructed?(0, 7)).to be true
     end
 
-    it "should detect an obstructing piece diagonally" do
+    it 'should detect an obstructing piece diagonally' do
       game = Game.create
       piece = Piece.create(game_id: game.id, x_position: 0, y_position: 0)
       Piece.create(game_id: game.id, x_position: 0, y_position: 0)

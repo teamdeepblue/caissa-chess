@@ -13,7 +13,7 @@ class Piece < ActiveRecord::Base
       pieces = Piece.where(game_id: game.id, y_position: y_start, x_position: (x_start + 1..x_destination - 1)).exists?
     elsif moving_vertically?
       pieces = Piece.where(game_id: game.id, x_position: x_start, y_position: (y_start + 1..y_destination - 1)).exists?
-    elsif moving_diagonally?    # needs word
+    elsif moving_diagonally? # needs word
       (x_start + 1..x_destination - 1).each do |x|
         y = x - x_start + y_start
         pieces.concat(Piece.where(x_position: x, y_position: y))
@@ -37,4 +37,3 @@ class Piece < ActiveRecord::Base
     (x_position - @x_destination == y_position - @y_destination)
   end
 end
-
