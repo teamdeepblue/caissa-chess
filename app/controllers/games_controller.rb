@@ -16,7 +16,7 @@ class GamesController < ApplicationController
   #   @game = Game.find(params[:id])
   #   current_player.update_attribute(:game_id, @game.id)
   # end
-
+ 
   private
 
   def game_params
