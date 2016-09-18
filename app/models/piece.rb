@@ -22,7 +22,7 @@ class Piece < ActiveRecord::Base
   end
 
   def is_obstructed?(x_destination, y_destination)
-    obstructing_pieces(x_destination, y_destination).exists?
+    obstructing_pieces(x_destination, y_destination)
   end
 
   def moving_horizontally?
