@@ -1,16 +1,5 @@
-<<<<<<< HEAD
 class GamesController < ApplicationController 
-	def show 
-		render template: "games/#{params[:game]}"
-	end 
-
-	def update 
-		@game = Game.find(params[:id]) 
-		current_player.update_attribute(:game_id, @game.id) 
-	end 
-=======
-class GamesController < ApplicationController
-  def new
+	def new
     @game = Game.new
   end
 
@@ -23,10 +12,15 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
   end
 
+  def update 
+		@game = Game.find(params[:id]) 
+		current_player.update_attribute(:game_id, @game.id) 
+	end 
+
   private
 
   def game_params
     params.require(:game).permit(:name)
   end
->>>>>>> master
+
 end
