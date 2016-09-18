@@ -1,11 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users
-<<<<<<< HEAD
-  get "/games/:game" => "games#show"
-=======
+  devise_for :users 
   root 'home#index'
+  get "/games/:game" => "games#show"
   resources :games, only: [:new, :create, :show]
->>>>>>> master
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
