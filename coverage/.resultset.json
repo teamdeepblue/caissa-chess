@@ -29,6 +29,11 @@
         1,
         null,
         null,
+        1,
+        1,
+        1,
+        null,
+        null,
         null
       ],
       "/vagrant/src/caissa-chess/spec/rails_helper.rb": [
@@ -809,6 +814,7 @@
       "/vagrant/src/caissa-chess/spec/factories/game.rb": [
         1,
         1,
+        1,
         null,
         null
       ],
@@ -836,6 +842,7 @@
         null
       ],
       "/vagrant/src/caissa-chess/config/routes.rb": [
+        1,
         1,
         1,
         1,
@@ -909,11 +916,19 @@
         1,
         null
       ],
+      "/vagrant/src/caissa-chess/app/helpers/game_helper.rb": [
+        1,
+        null
+      ],
       "/vagrant/src/caissa-chess/app/helpers/games_helper.rb": [
         1,
         null
       ],
       "/vagrant/src/caissa-chess/app/helpers/home_helper.rb": [
+        1,
+        null
+      ],
+      "/vagrant/src/caissa-chess/app/helpers/pages_helper.rb": [
         1,
         null
       ],
@@ -924,18 +939,23 @@
         null,
         null,
         1,
+        1,
+        1,
+        null,
+        null,
+        1,
         2,
         2,
         null,
         null,
-        1,
-        1,
+        null,
+        null,
         null,
         null,
         1,
         null,
         1,
-        2,
+        1,
         null,
         null
       ],
@@ -976,7 +996,6 @@
       "/vagrant/src/caissa-chess/spec/models/piece_spec.rb": [
         1,
         null,
-        1,
         1,
         1,
         1,
@@ -1044,7 +1063,6 @@
         1,
         1,
         null,
-        null,
         null
       ],
       "/vagrant/src/caissa-chess/app/models/game.rb": [
@@ -1060,6 +1078,6 @@
         null
       ]
     },
-    "timestamp": 1474212049
+    "timestamp": 1474568024
   }
 }
