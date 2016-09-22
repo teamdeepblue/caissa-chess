@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/vagrant/src/caissa-chess/spec/controllers/omniauth_callbacks_controller_spec.rb": [
+      "/vagrant/src/caissa-chess/spec/controllers/games_controller_spec.rb": [
         1,
         null,
         1,
@@ -11,15 +11,27 @@
         1,
         null,
         null,
+        null,
         1,
         1,
         1,
         1,
+        1,
+        1,
         null,
         null,
         null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
         null,
         null,
+        1,
+        1,
+        1,
         null,
         null,
         null
@@ -825,7 +837,7 @@
         1,
         1,
         1,
-        0,
+        1,
         null,
         1,
         1,
@@ -940,6 +952,62 @@
         1,
         null
       ],
+      "/vagrant/src/caissa-chess/app/controllers/games_controller.rb": [
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        2,
+        2,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/vagrant/src/caissa-chess/app/controllers/application_controller.rb": [
+        1,
+        null,
+        null,
+        1,
+        null
+      ],
+      "/vagrant/src/caissa-chess/spec/controllers/omniauth_callbacks_controller_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
       "/vagrant/src/caissa-chess/app/controllers/users/omniauth_callbacks_controller.rb": [
         1,
         1,
@@ -962,14 +1030,52 @@
         null,
         null
       ],
-      "/vagrant/src/caissa-chess/app/controllers/application_controller.rb": [
+      "/vagrant/src/caissa-chess/spec/factories_spec.rb": [
         1,
+        null,
+        1,
+        4,
+        4,
+        4,
+        null,
+        null,
+        null
+      ],
+      "/vagrant/src/caissa-chess/spec/helpers/games_helper_spec.rb": [
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
         null,
         null,
         1,
         null
+      ],
+      "/vagrant/src/caissa-chess/app/models/game.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
+      "/vagrant/src/caissa-chess/app/models/piece.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
+      "/vagrant/src/caissa-chess/app/models/player.rb": [
+        1,
+        1,
+        1,
+        null
       ]
     },
-    "timestamp": 1474506050
+    "timestamp": 1474506469
   }
 }
