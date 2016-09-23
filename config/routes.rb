@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   devise_for :users
   root 'home#index'
   get '/games/:game' => 'games#show'
-  resources :games, only: [:new, :create, :show]
+  resources :games, only: [:new, :create, :show] 
+    resources :players, only: [:create] 
+  end 
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
