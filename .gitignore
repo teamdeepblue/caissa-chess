@@ -11,6 +11,10 @@
 /log/*
 !/log/.keep
 /tmp
+
+# Ignore byebug history.
 .byebug_history
 app/models/.byebug_history
+
+# Ignore coverage files.
 coverage/*
