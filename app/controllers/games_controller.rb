@@ -14,9 +14,14 @@ class GamesController < ApplicationController
   end
 
   def show
-    @game = Game.find(params[:id])
+    @game = Game.find_by_id(params[:id])
+    return render text: 'Game Not Found', status: :not_found if @game.blank?
   end
 
+  # def update
+  #   @game = Game.find(params[:id])
+  #   current_player.update_attribute(:game_id, @game.id)
+  # end
   private
 
   def game_params
