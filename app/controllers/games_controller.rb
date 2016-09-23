@@ -1,7 +1,6 @@
 class GamesController < ApplicationController
-
   def index
-    @games = Game.joins(:players).group("games.id").having("count(players.id) = ?",1).order(created_at: :desc)
+    @games = Game.joins(:players).group('games.id').having('count(players.id) = ?', 1).order(created_at: :desc)
   end
 
   def new
@@ -27,5 +26,4 @@ class GamesController < ApplicationController
   def game_params
     params.require(:game).permit(:name)
   end
-
 end
