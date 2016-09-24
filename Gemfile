@@ -44,7 +44,7 @@ group :development, :test do
 
   # Use Rspec for TDD
   gem 'rspec-rails', '~> 3.5'
-
+  gem 'capybara'
   gem 'factory_girl_rails', '~> 4.0'
 end
 
