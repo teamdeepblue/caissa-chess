@@ -2,7 +2,7 @@ class Piece < ActiveRecord::Base
   belongs_to :game
   belongs_to :player
 
-  def obstructing_pieces(x_destination, y_destination)
+  def get_obstructing_pieces(x_destination, y_destination)
     x_start = x_position
     y_start = y_position
     @x_destination = x_destination
@@ -22,7 +22,7 @@ class Piece < ActiveRecord::Base
   end
 
   def is_obstructed?(x_destination, y_destination)
-    obstructing_pieces(x_destination, y_destination)
+    get_obstructing_pieces(x_destination, y_destination)
   end
 
   def moving_horizontally?
