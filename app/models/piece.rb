@@ -21,9 +21,9 @@ class Piece < ActiveRecord::Base
     end
   end
 
-  def is_obstructed?(x_destination, y_destination)
-    get_obstructing_pieces(x_destination, y_destination)
-  end
+  # def is_obstructed?(x_destination, y_destination)
+  #   get_obstructing_pieces(x_destination, y_destination)
+  # end
 
   def moving_horizontally?
     y_position == @y_destination
