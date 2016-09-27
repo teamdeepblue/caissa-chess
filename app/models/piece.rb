@@ -8,9 +8,9 @@ class Piece < ActiveRecord::Base
     x = x_position
     y = y_position
 
-    if moving_horizontally?(x_destination, y_destination)
+    if moving_horizontally?(y_destination)
       x = (x_position + 1..x_destination - 1)
-    elsif moving_vertically?(x_destination, y_destination)
+    elsif moving_vertically?(x_destination)
       y = (y_position + 1..y_destination - 1)
     elsif moving_diagonally?(x_destination, y_destination)
       (x_position + 1..x_destination - 1).each do |x_temp|
@@ -21,14 +21,14 @@ class Piece < ActiveRecord::Base
     end
     Piece.where(game_id: game.id, y_position: y, x_position: x).exists?
   end
-  
+
 # rubocop:enable all
 
-  def moving_horizontally?(_x_destination, y_destination)
+  def moving_horizontally?(y_destination)
     y_position == y_destination
   end
 
-  def moving_vertically?(x_destination, _y_destination)
+  def moving_vertically?(x_destination)
     x_position == x_destination
   end
 
