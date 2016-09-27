@@ -1,5 +1,9 @@
 class GamesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:new, :create, :show]
+
+  def index
+    @games = Game.joins(:players).group('games.id').having('count(players.id) = ?', 1).order(created_at: :desc)
+  end
 
   def new
     @game = Game.new
