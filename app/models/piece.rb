@@ -10,13 +10,8 @@ class Piece < ActiveRecord::Base
     true
   end
 
-  # returns absolute value of destination x - current x
-  def x_diff(x_destination)
-    (x_destination - x_position).abs
-  end
-
-  # returns absolute value of destination y - current y
-  def y_diff(y_destination)
-    (y_destination - y_position).abs
+  # returns absolute value of destination coord - current coord
+  def diff(destination, current)
+    (destination - current).abs
   end
 end
