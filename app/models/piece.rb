@@ -21,7 +21,9 @@ class Piece < ActiveRecord::Base
     end
     Piece.where(game_id: game.id, y_position: y, x_position: x).exists?
   end
+  
 # rubocop:enable all
+
   def moving_horizontally?(_x_destination, y_destination)
     y_position == y_destination
   end
