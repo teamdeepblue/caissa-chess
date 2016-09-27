@@ -15,14 +15,13 @@ class Piece < ActiveRecord::Base
     elsif moving_diagonally?(x_destination, y_destination)
       (x_position + 1..x_destination - 1).each do |x_temp|
         y = x_temp - x_position + y_position
-        pieces.concat(Piece.where(x_position: x, y_position: y))
+        pieces.concat(Piece.where(game_id: game.id, x_position: x, y_position: y))
       end
       return !pieces.empty?
     end
     Piece.where(game_id: game.id, y_position: y, x_position: x).exists?
   end
 # rubocop:enable all
-
   def moving_horizontally?(_x_destination, y_destination)
     y_position == y_destination
   end
@@ -35,4 +34,3 @@ class Piece < ActiveRecord::Base
     (x_position - x_destination == y_position - y_destination)
   end
 end
-# rubocop:enable all
