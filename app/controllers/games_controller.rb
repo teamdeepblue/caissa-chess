@@ -1,5 +1,9 @@
 class GamesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:new, :create, :show]
+
+  def index
+    @games = Game.joins(:players).group('games.id').having('count(players.id) = ?', 1).order(created_at: :desc)
+  end
 
   def new
     @game = Game.new
@@ -7,14 +11,19 @@ class GamesController < ApplicationController
 
   def create
     @game = Game.create(game_params)
-    @game.players.create(game_id: @game.id, user_id: current_user.id, color: [:black, :white].sample)
+    @game.players.create(user: current_user, color: [:black, :white].sample)
     redirect_to game_path(@game)
   end
 
   def show
-    @game = Game.find(params[:id])
+    @game = Game.find_by_id(params[:id])
+    return render text: 'Game Not Found', status: :not_found if @game.blank?
   end
 
+  # def update
+  #   @game = Game.find(params[:id])
+  #   current_player.update_attribute(:game_id, @game.id)
+  # end
   private
 
   def game_params
