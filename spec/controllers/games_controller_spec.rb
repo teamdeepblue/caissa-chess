@@ -33,6 +33,29 @@ RSpec.describe GamesController, type: :controller do
       post :create, game: { name: 'test game name' }
       expect(response).to redirect_to new_user_session_path
     end
+
+    it 'should successfully create a Player and assign them to the logged in user' do
+      user = FactoryGirl.create(:user)
+      sign_in user
+      post :create, game: { name: 'test game name' }
+      player = Player.last
+      expect(player.user_id).to eq user.id
+    end
+
+    it 'should successfully create a Player and assign them to a game' do
+      authed_user
+      post :create, game: { name: 'test game name' }
+      player = Player.last
+      game = Game.last
+      expect(player.game_id).to eq game.id
+    end
+
+    it 'should successfully create a Player and assign them a color' do
+      authed_user
+      post :create, game: { name: 'test game name' }
+      player = Player.last
+      expect(player.color).to_not be_nil
+    end
   end
 
   describe 'games#show action' do
