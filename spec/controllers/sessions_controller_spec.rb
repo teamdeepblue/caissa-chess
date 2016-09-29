@@ -6,14 +6,13 @@ RSpec.describe Devise::SessionsController, type: :controller do
 
   before do
   	request.env["devise.mapping"] = Devise.mappings[:user]
-    request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:facebook]
+    request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:facebook]
   end
-  
 
     it "can sign in user with facebook account" do
 	    visit '/'
 	    expect(page).to have_link("Sign in with Facebook")
-	    mock_auth_hash
+		OmniAuth.config.add_mock(:facebook, {:uid => '12345'})
 	    click_link "Sign in with Facebook"
 	   # page.to have_content("mockuser")  # user name
 	#    page.should have_css('img', :src => 'mock_user_thumbnail_url') # user image
@@ -27,4 +26,8 @@ RSpec.describe Devise::SessionsController, type: :controller do
 	    click_link "Sign in with Facebook"
 	    expect(page).to have_content('Sign in')
 	  end
+
+	  it "sets a session variable to the OmniAuth auth hash" do
+    	request.env["omniauth.auth"][:uid].to eq('12345')
+  	  end
 end
