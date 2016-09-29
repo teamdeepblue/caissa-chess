@@ -14,3 +14,4 @@
 .byebug_history
 app/models/.byebug_history
 coverage/*
+.DS_Store
