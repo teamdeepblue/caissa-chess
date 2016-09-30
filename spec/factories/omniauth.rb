@@ -10,6 +10,11 @@ FactoryGirl.define do
         uid: '12345',
         info: {
           email: "testuser@facebook.com"
+        },
+        extra: {
+            raw_info: {
+              name: "mockuser"
+          }
         }
       })
     end
