@@ -57,5 +57,4 @@ RSpec.describe Piece, type: :model do
       expect(piece.diff(3, piece.x_position)).to eq 3
     end
   end
-
 end
