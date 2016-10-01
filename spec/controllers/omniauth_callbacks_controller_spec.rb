@@ -56,24 +56,21 @@ RSpec.describe Users::OmniauthCallbacksController, :type => :controller do
     end
 
     before(:each) do
-
       Rails.application.routes.draw do
         devise_scope :user do
           get '/users/auth/failure' => 'omniauth_callbacks#failure'
         end
-        root 'static_pages#index'
+        root 'home#index'
       end
-
       get :failure
-
     end
 
-    it 'should redirectto root path' do
+    it 'should redirect to root path' do
       expect(response).to redirect_to root_path
     end
 
     it 'should set flash :alert' do
-      expect(flash[:alert]).to exist
+      expect(flash[:alert]).to be_present
     end
 
   end

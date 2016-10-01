@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   root 'home#index'
   get '/games/:game' => 'games#show'
   resources :games, only: [:new, :create, :show]
+  devise_scope :user do
+    get '/users/auth/failure' => 'users/omniauth_callbacks#failure'
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
