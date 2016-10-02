@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Piece, type: :model do
-  let(:game) { create :game }
+  let(:game) { create(:game) }
   let(:piece) { Piece.create(game_id: game.id, x_position: 0, y_position: 0) }
 
   describe '.obstructed?' do
@@ -53,6 +53,22 @@ RSpec.describe Piece, type: :model do
   describe '.diff' do
     it 'should return a positive value' do
       expect(piece.diff(3, piece.x_position)).to eq 3
+    end
+  end
+
+  describe '.move_to!' do
+    it 'should move the piece to the destination square' do
+      expect(piece.move_to!(2, 6)).to be true
+    end
+
+    it 'return true if the move is valid' do
+      expect(piece.valid_move?(4, 7)).to eq true
+    end
+  end
+
+  describe '.capture_piece' do
+    it 'returns false is the destination is occupied' do
+      expect(piece.is_occupied?(2, 6)).to eq false
     end
   end
 end

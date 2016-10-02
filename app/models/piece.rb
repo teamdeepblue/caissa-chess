@@ -48,4 +48,32 @@ class Piece < ActiveRecord::Base
   def diff(destination, current)
     (destination - current).abs
   end
+
+
+  # Capture logic
+  # returns true if the move is valid
+  def move_to!(x_destination, y_destination)
+    return true if valid_move?(x_destination, y_destination)
+    capture_piece(x_destination, y_destinaiton)
+    game.update_attributes(x_position: x, y_position: y)
+  end
+
+  # returns false if square is occupied
+  # returns true if piece is captured
+  def capture_piece(x_destination, y_destination)
+    return false if game.occupied?(x_destination, y_destination)
+    self.game.find_piece(x_destination, y_destination).captured!
+    return true
+  end
+
+  def occupied?(x_destination, y_destination)
+    pieces.where(game_id: game.id, y_destination: y, x_destination: x).any?
+  end
+
+  def find_piece(x_position, y_position)
+
+  end
+
+  def captured!
+  end
 end
