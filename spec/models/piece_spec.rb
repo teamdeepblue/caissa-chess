@@ -38,7 +38,7 @@ RSpec.describe Piece, type: :model do
       expect(piece.obstructed?(2, 2)).to be false
     end
 
-    #added examples using piece2
+    # added examples using piece2
     it 'should detect an obstructing piece horizontally' do
       expect(piece2.obstructed?(2, 4)).to be true
     end
@@ -49,7 +49,7 @@ RSpec.describe Piece, type: :model do
 
     it 'should detect an obstructing piece diagonally' do
       expect(piece4.obstructed?(2, 2)).to be true
-    end    
+    end
   end
 
   describe '.valid_move?' do
