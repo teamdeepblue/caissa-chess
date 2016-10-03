@@ -39,7 +39,7 @@ RSpec.describe Users::OmniauthCallbacksController, :type => :controller do
       end
 
       it 'should redirect to new user registration' do
-        expect(response).to redirect_to new_user_registration_url
+        expect(response).to redirect_to new_user_registration_path
       end
 
       it 'should set flash :notice' do
