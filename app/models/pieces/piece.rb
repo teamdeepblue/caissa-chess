@@ -7,16 +7,29 @@ class Piece < ActiveRecord::Base
     pieces = []
     x = x_position
     y = y_position
-
     if moving_horizontally?(y_destination)
-      x = (x_position + 1..x_destination - 1)
+      direction_start = x_destination <=> x_position
+      x_start = x_position + direction_start
+      x_end = x_destination - (diff(x_destination, x_position) > 1 ? direction_start : 0)
+      x = x_start < x_end ? x_start..x_end : x_end..x_start
     elsif moving_vertically?(x_destination)
-      y = (y_position + 1..y_destination - 1)
+      direction_start = y_destination <=> y_position
+      y_start = y_position + direction_start
+      y_end = y_destination - (diff(y_destination, y_position) > 1 ? direction_start : 0)
+      y = y_start < y_end ? y_start..y_end : y_end..y_start
     elsif moving_diagonally?(x_destination, y_destination)
-      (x_position + 1..x_destination - 1).each do |x_temp|
-        y = x_temp - x_position + y_position
-        pieces.concat(Piece.where(game_id: game.id, x_position: x, y_position: y))
+      direction_start_x = x_destination <=> x_position
+      x_start = x_position + direction_start_x
+      x_end = x_destination - (diff(x_destination, x_position) > 1 ? direction_start_x : 0)
+      direction_start_y = direction_start_x * (y_destination <=> y_position)
+      x = x_start < x_end ? x_start..x_end : x_end..x_start
+      # byebug
+      x.each do |x_temp|
+        y_temp = direction_start_y * (x_temp - x_position) + y_position
+        # byebug
+        pieces.concat(Piece.where(game_id: game.id, x_position: x_temp, y_position: y_temp))
       end
+      # byebug
       return !pieces.empty?
     end
     Piece.where(game_id: game.id, y_position: y, x_position: x).exists?
