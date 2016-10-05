@@ -4,7 +4,7 @@ RSpec.describe King, type: :model do
   it_behaves_like 'Piece'
 
   let(:game) { create :game }
-  let(:king) { King.create(game_id: game.id, x_position: 3, y_position: 3) }
+  let(:king) { King.create(player_id: 1, x_position: 3, y_position: 3) }
 
   describe '.valid_move?' do
     it 'should return true if move is 1 spot horizontal' do

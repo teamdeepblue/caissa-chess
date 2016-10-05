@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Bishop, type: :model do
   it_behaves_like 'Piece'
   let(:game) { create :game }
-  let(:bishop) { Bishop.create(game_id: game.id, x_position: 3, y_position: 3) }
+  let(:bishop) { Bishop.create(player_id: 1, x_position: 3, y_position: 3) }
 
   describe '.valid_move?' do
     context 'piece is not obstructed' do
@@ -44,10 +44,10 @@ RSpec.describe Bishop, type: :model do
   describe '.valid_move?' do
     context 'piece IS obstructed' do
       before do
-        Piece.create(game_id: game.id, x_position: 5, y_position: 1)
-        Piece.create(game_id: game.id, x_position: 6, y_position: 6)
-        Piece.create(game_id: game.id, x_position: 2, y_position: 4)
-        Piece.create(game_id: game.id, x_position: 2, y_position: 2)
+        Piece.create(player_id: 1, x_position: 5, y_position: 1)
+        Piece.create(player_id: 1, x_position: 6, y_position: 6)
+        Piece.create(player_id: 1, x_position: 2, y_position: 4)
+        Piece.create(player_id: 1, x_position: 2, y_position: 2)
       end
 
       it 'returns false on a true diagonal to the northeast' do

@@ -4,13 +4,13 @@ RSpec.describe Piece, type: :model do
   it_behaves_like 'Piece'
 
   let(:game) { create :game }
-  let(:piece) { Piece.create(game_id: game.id, x_position: 0, y_position: 0) }
+  let(:piece) { Piece.create(player_id: 1, x_position: 0, y_position: 0) }
 
   describe '.obstructed?' do
     before do
-      Piece.create(game_id: game.id, x_position: 5, y_position: 0)
-      Piece.create(game_id: game.id, x_position: 0, y_position: 6)
-      Piece.create(game_id: game.id, x_position: 4, y_position: 4)
+      Piece.create(player_id: 1, x_position: 5, y_position: 0)
+      Piece.create(player_id: 1, x_position: 0, y_position: 6)
+      Piece.create(player_id: 1, x_position: 4, y_position: 4)
     end
 
     it 'should detect an obstructing piece horizontally' do
