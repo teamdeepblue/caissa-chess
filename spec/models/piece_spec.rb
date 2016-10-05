@@ -1,15 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe Piece, type: :model do
+  before do
+    Piece.create(game_id: game.id, x_position: 5, y_position: 0)
+    Piece.create(game_id: game.id, x_position: 0, y_position: 6)
+    Piece.create(game_id: game.id, x_position: 4, y_position: 4)
+  end
   let(:game) { create(:game) }
   let(:piece) { Piece.create(game_id: game.id, x_position: 0, y_position: 0) }
 
   describe '.obstructed?' do
-    before do
-      Piece.create(game_id: game.id, x_position: 5, y_position: 0)
-      Piece.create(game_id: game.id, x_position: 0, y_position: 6)
-      Piece.create(game_id: game.id, x_position: 4, y_position: 4)
-    end
 
     it 'should detect an obstructing piece horizontally' do
       expect(piece.obstructed?(7, 0)).to be true
@@ -61,8 +61,8 @@ RSpec.describe Piece, type: :model do
       expect(piece.move_to!(2, 6)).to be true
     end
 
-    it 'return true if the move is valid' do
-      expect(piece.valid_move?(4, 7)).to eq true
+    it 'return false if the move is valid' do
+      expect(piece.valid_move?(4, 7)).to eq false
     end
   end
 

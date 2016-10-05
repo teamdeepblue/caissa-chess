@@ -1,4 +1,12 @@
 class Game < ActiveRecord::Base
   has_many :pieces
   has_many :players
+
+  def occupied?(x_destination, y_destination)
+    pieces.active.where(y_position: y_destination, x_position: x_destination).any?
+  end
+
+  def find_piece(x_destination, y_destination)
+    pieces.active.where(x_position: x_destination, y_position: y_destination).first
+  end
 end

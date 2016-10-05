@@ -2,6 +2,7 @@
 class Piece < ActiveRecord::Base
   belongs_to :game
   belongs_to :player
+  scope :active, -> { where(captured: false) }
 
   def obstructed?(x_destination, y_destination)
     pieces = []
@@ -15,11 +16,11 @@ class Piece < ActiveRecord::Base
     elsif moving_diagonally?(x_destination, y_destination)
       (x_position + 1..x_destination - 1).each do |x_temp|
         y = x_temp - x_position + y_position
-        pieces.concat(Piece.where(game_id: game.id, x_position: x, y_position: y))
+        pieces.concat(Piece.active.where(game_id: game.id, x_position: x, y_position: y))
       end
       return !pieces.empty?
     end
-    Piece.where(game_id: game.id, y_position: y, x_position: x).exists?
+    Piece.active.where(game_id: game.id, y_position: y, x_position: x).exists?
   end
 
 # rubocop:enable all
@@ -41,6 +42,7 @@ class Piece < ActiveRecord::Base
   def valid_move?(x_destination, y_destination)
     return false if x_destination == x_position && y_destination == y_position
     return false if !(0..7).cover?(x_destination) || !(0..7).cover?(y_destination)
+    return false if game.occupied?(x_destination, y_destination) && game.find_piece(x_destination, y_destination).player_id == self.player_id
     true
   end
 
@@ -49,31 +51,20 @@ class Piece < ActiveRecord::Base
     (destination - current).abs
   end
 
-
   # Capture logic
-  # returns true if the move is valid
   def move_to!(x_destination, y_destination)
-    return true if valid_move?(x_destination, y_destination)
-    capture_piece(x_destination, y_destinaiton)
-    game.update_attributes(x_position: x, y_position: y)
+    return false unless valid_move?(x_destination, y_destination)
+    capture_piece(x_destination, y_destination)
+    self.update_attributes(x_position: x_destination, y_position: y_destination)
   end
 
-  # returns false if square is occupied
-  # returns true if piece is captured
   def capture_piece(x_destination, y_destination)
-    return false if game.occupied?(x_destination, y_destination)
+    return false unless game.occupied?(x_destination, y_destination)
     self.game.find_piece(x_destination, y_destination).captured!
     return true
   end
 
-  def occupied?(x_destination, y_destination)
-    pieces.where(game_id: game.id, y_destination: y, x_destination: x).any?
-  end
-
-  def find_piece(x_position, y_position)
-
-  end
-
   def captured!
+    self.update_attributes(captured: true)
   end
 end
