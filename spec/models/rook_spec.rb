@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Rook, type: :model do
+  it_behaves_like 'Piece'
   let(:game) { create :game }
   let(:rook) { Rook.create(game_id: game.id, x_position: 3, y_position: 3) }
 

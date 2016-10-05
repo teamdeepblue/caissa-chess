@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Piece, type: :model do
+  it_behaves_like 'Piece'
+
   let(:game) { create :game }
   let(:piece) { Piece.create(game_id: game.id, x_position: 0, y_position: 0) }
   let(:piece2) { Piece.create(game_id: game.id, x_position: 7, y_position: 4) }
