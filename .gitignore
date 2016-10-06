@@ -14,3 +14,11 @@
 
 # Ignore application configuration
 /config/application.yml
+
+# Ignore byebug history.
+.byebug_history
+app/models/.byebug_history
+
+# Ignore coverage files.
+coverage/*
+.DS_Store
