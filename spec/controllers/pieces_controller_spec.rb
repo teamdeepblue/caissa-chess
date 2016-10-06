@@ -1,30 +1,31 @@
 require 'rails_helper'
 
 RSpec.describe PiecesController, type: :controller do
-	def authed_user
-    	user = FactoryGirl.create(:user)
-    	sign_in user
-  	end
-	describe "pieces#new action" do
-		#before do
-		#	@piece = create(:piece)
-		#end
-		it "Should successfully show the new page" do
-#			expect(last_piece.piece).to eq(piece)
-	 		game1 = FactoryGirl.create(:game)
-			player1 = FactoryGirl.create(:player)
-#	      	piece1 = FactoryGirl.create(:piece, player_id: player1.id, game_id: game1.id)
-#	      	piece2 = FactoryGirl.create(:piece, player_id: player1.id, game_id: game1.id)
-#	      	piece3 = FactoryGirl.create(:piece, player_id: player1.id, game_id: game1.id)
-	      	get :new, game_id: game1.id, player_id: player1.id
-			expect(response).to have_http_status(:success)
-	#	      	expect(assigns(:games, :players)).to eq([game1])
-	      	response_value = ActiveSupport::JSON.decode(@response.body)
-	      	expect(response_value.count).to eq(32)
-#	        response_ids = response_value.collect do |piece| 
-#	          piece["id"]
- #       	end
-  #      	expect(response_ids).to eq([piece1.id, piece2.id, piece3.id])
-		end
-	end
+  describe 'pieces#new action' do
+    it 'Should successfully show the new page' do
+      game1 = FactoryGirl.create(:game)
+      game2 = FactoryGirl.create(:game)
+      player1 = FactoryGirl.create(:player)
+      player2 = FactoryGirl.create(:player)
+      get :new, game_id: game1.id, player_id: player1.id
+      expect(response).to have_http_status(:success)
+      response_value = ActiveSupport::JSON.decode(@response.body)
+      expect(response_value.count).to eq(32)
+      get :new, game_id: game2.id, player_id: player2.id
+      expect(response).to have_http_status(:success)
+      response_value = ActiveSupport::JSON.decode(@response.body)
+      expect(response_value.count).to eq(32)
+      expect(Piece.count).to eq(64)
+    end
+
+    it 'Should not allow creation of more that 32 pieces' do
+      game3 = FactoryGirl.create(:game)
+      player3 = FactoryGirl.create(:player)
+      get :new, game_id: game3.id, player_id: player3.id
+      expect(response).to have_http_status(:success)
+      extra_added_piece = FactoryGirl.create(:piece, player_id: player3.id, game_id: game3.id)
+      response_value = ActiveSupport::JSON.decode(@response.body)
+      expect(response_value.last['id']).to_not eq(extra_added_piece.id)
+    end
+  end
 end
