@@ -1,6 +1,3 @@
-source 'https://rubygems.org' 
-require 'htmlentities'
-coder = HTMLEntities.new
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
