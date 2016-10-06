@@ -2,105 +2,69 @@
 
 <p>Game name: <%= @game.name %></p> 
 
-<% array = ["A","B","C","D","E","F","G","H"] %>
+<% array = ["A","B","C","D","E","F","G","H"] %> 
+<% unicodefig = ["&#9820;","&#9822;", "&#9821;", "&#9819;", "&#9818;", "&#9821;", "&#9822;", "&#9820;"] %>
 <table id = "ChessBoard"> 
 <% 8.times.each do |number| %> 
 	<% if number% 2 ==0 %>  
 		<tr> 
-			<% 8.times.each do |square| %>  
-				<% if square %2 == 0 %> 
-					<td class = "white" id = "<%= array[square]%><%= number+1 %>"></td> 
-				<% else %> 
-					<td class = "black" id = "<%= array[square]%><%= number+1 %>"></td> 
-				<%end%> 
-
+			<% if number == 6 %> 
+				<% 8.times.each do |square| %>  
+					<% if square %2 == 0 %> 
+						<td class = "white wp" id = "<%= array[square]%><%= number+1 %>">&#9821;</td> 
+					<% else %> 
+						<td class = "black wp" id = "<%= array[square]%><%= number+1 %>">&#9821;</td> 
+					<%end%> 
+				<%end%>  
+			<% elsif number == 0 %> 
+					<% 8.times.each do |square| %>  
+						<% if square %2 == 0 %> 
+							<td class = "white bp" id = "<%= array[square]%><%= number+1 %>"><%= unicodefig[square].html_safe %></td> 
+						<% else %> 
+							<td class = "black bp" id = "<%= array[square]%><%= number+1 %>"><%= unicodefig[square].html_safe %></td> 
+						<%end%> 
+					<%end%> 
+			<%else%> 
+				<% 8.times.each do |square| %>  
+					<% if square %2 == 0 %> 
+						<td class = "white" id = "<%= array[square]%><%= number+1 %>"></td> 
+					<% else %> 
+						<td class = "black" id = "<%= array[square]%><%= number+1 %>"></td> 
+					<%end%> 
+				<%end%>
 			<%end%> 
 		<tr> 
+	
 	<% else %> 
 		<tr> 
-			<% 8.times.each do |square| %> 
+			<% if number == 1 %> 
+				<% 8.times.each do |square| %>  
+					<% if square %2 == 0 %> 
+						<td class = "black bp" id = "<%= array[square]%><%= number+1 %>">&#9821;</td> 
+					<% else %> 
+						<td class = "white bp" id = "<%= array[square]%><%= number+1 %>">&#9821;</td> 
+					<%end%> 
+				<%end%>  
+			<% elsif number ==7 %> 
+				<% 8.times.each do |square| %> 
+					<% if square % 2 == 0 %> 
+						<td class = "black wp" id = "<%= array[square] %> <%= number+1 %>"> <%= unicodefig[square].html_safe %> </td> 
+					<%else%> 
+						<td class = "white wp" id = "<%= array[square] %> <%= number+1 %>"> <%= unicodefig[square].html_safe %> </td> 
+					<%end%> 
+				<%end%> 
+			<%else%> 
+				<% 8.times.each do |square| %>  
 					<% if square %2 == 0 %> 
 						<td class = "black" id = "<%= array[square]%><%= number+1 %>"></td> 
 					<% else %> 
 						<td class = "white" id = "<%= array[square]%><%= number+1 %>"></td> 
 					<%end%> 
+				<%end%>
 			<%end%> 
 		</tr> 
 	<%end%> 
 <%end%> 
 </table> 
 
-<div class="chessboard">
-<!-- First Row --> 
-<div class="white">&#9820;</div>
-<div class="black">&#9822;</div>
-<div class="white">&#9821;</div>
-<div class="black">&#9819;</div>
-<div class="white">&#9818;</div>
-<div class="black">&#9821;</div>
-<div class="white">&#9822;</div>
-<div class="black">&#9820;</div>
-<!-- Second -->
-<div class="black">&#9821;</div>
-<div class="white">&#9821;</div>
-<div class="black">&#9821;</div>
-<div class="white">&#9821;</div>
-<div class="black">&#9821;</div>
-<div class="white">&#9821;</div>
-<div class="black">&#9821;</div>
-<div class="white">&#9821;</div>
-<!-- Fourth -->
-<div class="white"></div>
-<div class="black"></div>
-<div class="white"></div>
-<div class="black"></div>
-<div class="white"></div>
-<div class="black"></div>
-<div class="white"></div>
-<div class="black"></div>
-<!-- Fifth -->
-<div class="black"></div>
-<div class="white"></div>
-<div class="black"></div>
-<div class="white"></div>
-<div class="black"></div>
-<div class="white"></div>
-<div class="black"></div>
-<div class="white"></div>
-<!-- Sixth -->
-<div class="white"></div>
-<div class="black"></div>
-<div class="white"></div>
-<div class="black"></div>
-<div class="white"></div>
-<div class="black"></div>
-<div class="white"></div>
-<div class="black"></div>
-<!-- Seventh -->
-<div class="black"></div>
-<div class="white"></div>
-<div class="black"></div>
-<div class="white"></div>
-<div class="black"></div>
-<div class="white"></div>
-<div class="black"></div>
-<div class="white"></div>
-<!-- Eight -->
-<div class="white">&#9817;</div>
-<div class="black">&#9817;</div>
-<div class="white">&#9817;</div>
-<div class="black">&#9817;</div>
-<div class="white">&#9817;</div>
-<div class="black">&#9817;</div>
-<div class="white">&#9817;</div>
-<div class="black">&#9817;</div>
-<!-- Ninth -->
-<div class="black">&#9814;</div>
-<div class="white">&#9816;</div>
-<div class="black">&#9815;</div>
-<div class="white">&#9813;</div>
-<div class="black">&#9812;</div>
-<div class="white">&#9815;</div>
-<div class="black">&#9816;</div>
-<div class="white">&#9814;</div>
-</div>
+
