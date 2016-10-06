@@ -2,6 +2,7 @@
 class Piece < ActiveRecord::Base
   belongs_to :game
   belongs_to :player
+  # stores active pieces to exclude captured pieces
   scope :active, -> { where(captured: false) }
 
   def obstructed?(x_destination, y_destination)
@@ -39,6 +40,8 @@ class Piece < ActiveRecord::Base
 
   # return false if attempting to move to current square
   # then determines if the destination square is within the board boundaries
+  # returns false if the destination is occupied and the moving piece and
+  # destination piece player_id's are the same
   def valid_move?(x_destination, y_destination)
     return false if x_destination == x_position && y_destination == y_position
     return false if !(0..7).cover?(x_destination) || !(0..7).cover?(y_destination)
@@ -51,7 +54,9 @@ class Piece < ActiveRecord::Base
     (destination - current).abs
   end
 
-  # Capture logic
+  # checks for valid move
+  # initiates capture of opponent's piece if true
+  # updates the poaition of the capturing piece
   def move_to!(x_destination, y_destination)
     return false unless valid_move?(x_destination, y_destination)
     capture_piece(x_destination, y_destination)
@@ -64,6 +69,7 @@ class Piece < ActiveRecord::Base
     return true
   end
 
+  # updates database if captured
   def captured!
     self.update_attributes(captured: true)
   end
