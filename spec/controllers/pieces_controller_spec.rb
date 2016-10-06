@@ -18,14 +18,16 @@ RSpec.describe PiecesController, type: :controller do
       expect(Piece.count).to eq(64)
     end
 
-    it 'Should not allow creation of more that 32 pieces' do
+    context 'with invalid status' do
+      Game.delete_all
       game3 = FactoryGirl.create(:game)
       player3 = FactoryGirl.create(:player)
-      get :new, game_id: game3.id, player_id: player3.id
-      expect(response).to have_http_status(:success)
-      extra_added_piece = FactoryGirl.create(:piece, player_id: player3.id, game_id: game3.id)
-      response_value = ActiveSupport::JSON.decode(@response.body)
-      expect(response_value.last['id']).to_not eq(extra_added_piece.id)
+      let(:piece) { FactoryGirl.create(:piece, player_id: player3.id, game_id: game3.id) }
+      it 'Raises an exception when more than 32 pieces are created' do
+        get :new, game_id: game3.id, player_id: player3.id
+        puts Piece.count
+        expect { piece.validate_max_pieces }.to raise_exception(ActiveRecord::RecordNotSaved)
+      end
     end
   end
 end
