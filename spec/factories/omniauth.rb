@@ -3,31 +3,29 @@ FactoryGirl.define do
   # facebook user, google user or when testing a user who does not
   # persist, use the does_not_persist trait.
   factory :auth_hash, class: OmniAuth::AuthHash do
-
     initialize_with do
-      OmniAuth::AuthHash.new({
+      OmniAuth::AuthHash.new(
         provider: 'facebook',
         uid: '12345',
         info: {
-          email: "testuser@facebook.com"
+          email: 'testuser@facebook.com'
         },
         extra: {
-            raw_info: {
-              name: "mockuser"
+          raw_info: {
+            name: 'mockuser'
           }
         }
-      })
+      )
     end
 
     trait :facebook do
-      provider "facebook"
+      provider 'facebook'
       sequence(:uid)
-      email "testuser@facebook.com"
+      email 'testuser@facebook.com'
     end
 
     trait :does_not_persist do
-      email ""
+      email ''
     end
-
   end
 end

@@ -27,25 +27,13 @@ require 'capybara/rails'
 # Checks for pending migration and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
 
-#OmniAuth.config.test_mode = true
-#OmniAuth.config.mock_auth[:facebook] = {
- #     'provider' => 'facebook',
-  ##   'user_info' => {
-   #     'name' => 'mockuser',
-    #    'email' => 'facebook@facebook.com'
-     ##'credentials' => {
-       # 'token' => '140925763026116',
-        #'secret' => ENV['APP_SECRET']
-      #}
-    #}
-
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Capybara::DSL
-#  config.include OmniauthMacros, type: :controller
+  # config.include OmniauthMacros, type: :controller
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

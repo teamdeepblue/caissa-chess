@@ -7,3 +7,6 @@ AllCops:
 # Metrics
 Metrics/LineLength:
   Max: 100
+
+Style/BracesAroundHashParameters:
+  EnforcedStyle: context_dependent
