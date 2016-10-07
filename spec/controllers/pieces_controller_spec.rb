@@ -25,7 +25,6 @@ RSpec.describe PiecesController, type: :controller do
       let(:piece) { FactoryGirl.create(:piece, player_id: player3.id, game_id: game3.id) }
       it 'Raises an exception when more than 32 pieces are created' do
         get :new, game_id: game3.id, player_id: player3.id
-        puts Piece.count
         expect { piece.validate_max_pieces }.to raise_exception(ActiveRecord::RecordNotSaved)
       end
     end
