@@ -1,12 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe Piece, type: :model do
+  it_behaves_like 'Piece'
+
   before do
     Piece.create(game_id: game.id, x_position: 5, y_position: 0)
     Piece.create(game_id: game.id, x_position: 0, y_position: 6)
     Piece.create(game_id: game.id, x_position: 4, y_position: 4)
   end
-  let(:game) { create(:game) }
+
+  let(:game) { create :game }
   let(:piece) { Piece.create(game_id: game.id, x_position: 0, y_position: 0) }
 
   describe '.obstructed?' do

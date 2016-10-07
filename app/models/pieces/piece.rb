@@ -35,18 +35,19 @@ class Piece < ActiveRecord::Base
   end
 
   def moving_diagonally?(x_destination, y_destination)
-    (x_position - x_destination == y_position - y_destination)
+    ((x_position - x_destination).abs == (y_position - y_destination).abs)
   end
 
   # return false if attempting to move to current square
   # then determines if the destination square is within the board boundaries
-  # returns false if the destination is occupied and the moving piece and
-  # destination piece player_id's are the same
+  # returns false if the destination is occupied and the moving piece and destination piece player_id's are the same
+  # then (unless piece is a knight) determines if the piece is obstructed
   def valid_move?(x_destination, y_destination)
     return false if x_destination == x_position && y_destination == y_position
     return false if !(0..7).cover?(x_destination) || !(0..7).cover?(y_destination)
     return false if game.occupied?(x_destination, y_destination) && game.find_piece(x_destination, y_destination).player_id == self.player_id
-    true
+    return true if knight
+    !obstructed?(x_destination, y_destination)
   end
 
   # returns absolute value of destination coord - current coord
