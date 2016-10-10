@@ -8,16 +8,19 @@ class Piece < ActiveRecord::Base
     x = x_position
     y = y_position
     if moving_horizontally?(y_destination)
+      return false unless diff(x_destination, x_position) > 1
       direction_start = x_destination <=> x_position
       x_start = x_position + direction_start
       x_end = x_destination - (diff(x_destination, x_position) > 1 ? direction_start : 0)
       x = x_start < x_end ? x_start..x_end : x_end..x_start
     elsif moving_vertically?(x_destination)
+      return false unless diff(y_destination, y_position) > 1
       direction_start = y_destination <=> y_position
       y_start = y_position + direction_start
       y_end = y_destination - (diff(y_destination, y_position) > 1 ? direction_start : 0)
       y = y_start < y_end ? y_start..y_end : y_end..y_start
     elsif moving_diagonally?(x_destination, y_destination)
+      return false unless diff(x_destination, x_position) + diff(y_destination, y_position) > 2
       direction_start_x = x_destination <=> x_position
       x_start = x_position + direction_start_x
       x_end = x_destination - (diff(x_destination, x_position) > 1 ? direction_start_x : 0)
