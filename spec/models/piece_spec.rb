@@ -1,13 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Piece, type: :model do
-  it_behaves_like 'Piece'
-
   before do
     Piece.create(game_id: game.id, x_position: 5, y_position: 0)
     Piece.create(game_id: game.id, x_position: 0, y_position: 6)
     Piece.create(game_id: game.id, x_position: 4, y_position: 4)
   end
+  it_behaves_like 'Piece'
 
   let(:game) { create :game }
   let(:piece) { Piece.create(game_id: game.id, x_position: 0, y_position: 0) }
@@ -53,24 +52,21 @@ RSpec.describe Piece, type: :model do
     end
   end
 
+  it 'should return false if destination is occupied and player ids are the same' do
+    king = create :piece, player_id: 1, x_position: 4, y_position: 1
+    bishop = create :piece, player_id: 1, x_position: 4, y_position: 2
+    expect(king.valid_move? 4, 2).to eq false
+
+  end
+
   describe '.diff' do
     it 'should return a positive value' do
       expect(piece.diff(3, piece.x_position)).to eq 3
     end
   end
 
-  describe '.move_to!' do
-    it 'should move the piece to the destination square' do
-      expect(piece.move_to!(2, 6)).to be true
-    end
-
-    it 'return false if the move is valid' do
-      expect(piece.valid_move?(4, 7)).to eq false
-    end
-  end
-
   describe '.capture_piece' do
-    it 'returns false is the destination is occupied' do
+    it 'should be able to capture a piece' do
       expect(piece.is_occupied?(2, 6)).to eq false
     end
   end
