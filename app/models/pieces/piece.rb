@@ -46,10 +46,11 @@ class Piece < ActiveRecord::Base
 
   # return false if attempting to move to current square
   # then determines if the destination square is within the board boundaries
-  # then determines if the piece is obstructed
-  def valid_move?(x_destination, y_destination)
+  # then (unless piece is a knight) determines if the piece is obstructed
+  def valid_move?(x_destination, y_destination, knight = false)
     return false if x_destination == x_position && y_destination == y_position
     return false if !(0..7).cover?(x_destination) || !(0..7).cover?(y_destination)
+    return true if knight
     !obstructed?(x_destination, y_destination)
   end
 
