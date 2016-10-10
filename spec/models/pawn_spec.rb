@@ -4,12 +4,12 @@ RSpec.describe Pawn, type: :model do
   it_behaves_like 'Piece'
 
   let(:game) { FactoryGirl.create(:game) }
-  let (:white) { FactoryGirl.create(:player, game: game) }
-  let (:black) { FactoryGirl.create(:player, color: "black", game: game) }
-  let (:white_pawn) { FactoryGirl.create(:pawn, player: white, game: game)}
-  let (:black_pawn) { FactoryGirl.create(:pawn, player: black, y_position: 6, game: game) }
+  let(:white) { FactoryGirl.create(:player, game: game) }
+  let(:black) { FactoryGirl.create(:player, color: 'black', game: game) }
+  let(:white_pawn) { FactoryGirl.create(:pawn, player: white, game: game) }
+  let(:black_pawn) { FactoryGirl.create(:pawn, player: black, y_position: 6, game: game) }
 
-  #non-capturing moves
+  # non-capturing moves
   it 'should return true if move is 1 spot vertical forward' do
     expect(white_pawn.valid_move?(4, 2)).to eq true
     expect(black_pawn.valid_move?(4, 5)).to eq true
@@ -20,14 +20,14 @@ RSpec.describe Pawn, type: :model do
     expect(black_pawn.valid_move?(4, 6)).to eq false
   end
 
-   it 'should return false if move is 1 spot horizontal' do
+  it 'should return false if move is 1 spot horizontal' do
     expect(black_pawn.valid_move?(3, 6)).to eq false
-  end  
+  end
 
   it 'should return false if move is 3 spots vertical' do
     expect(black_pawn.valid_move?(4, 3)).to eq false
-    expect(white_pawn.valid_move?(4, 4)).to eq false    
-  end  
+    expect(white_pawn.valid_move?(4, 4)).to eq false
+  end
 
   it 'should return true if move is 2 spots vertical from starting position' do
     expect(white_pawn.valid_move?(4, 3)).to eq true
@@ -51,7 +51,7 @@ RSpec.describe Pawn, type: :model do
     expect(black_pawn.valid_move?(3, 7)).to eq false
   end
 
-  #capturing moves
+  # capturing moves
   it 'should return true if move is 1 spot diagonally forward with opposite piece present' do
     FactoryGirl.create(:pawn, player: white, game: game, x_position: 3, y_position: 5)
     FactoryGirl.create(:pawn, player: black, game: game, x_position: 3, y_position: 2)
@@ -71,5 +71,5 @@ RSpec.describe Pawn, type: :model do
     FactoryGirl.create(:pawn, player: white, game: game, x_position: 3, y_position: 2)
     expect(white_pawn.valid_move?(3, 2)).to eq false
     expect(black_pawn.valid_move?(3, 5)).to eq false
-  end  
+  end
 end
