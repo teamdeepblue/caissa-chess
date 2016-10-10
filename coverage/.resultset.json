@@ -1475,15 +1475,14 @@
       ],
       "/vagrant/src/caissa-chess/app/models/pieces/pawn.rb": [
         1,
+        null,
         1,
         null,
         21,
         null,
         18,
-        15,
         null,
         15,
-        12,
         null,
         12,
         10,
@@ -1492,6 +1491,7 @@
         null,
         null,
         6,
+        null,
         null,
         null,
         null,
@@ -1674,6 +1674,6 @@
         null
       ]
     },
-    "timestamp": 1476123017
+    "timestamp": 1476129003
   }
 }
