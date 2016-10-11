@@ -89,7 +89,7 @@ RSpec.describe Piece, type: :model do
       expect(piece.x_position).to eq 0
       expect(piece.y_position).to eq 4
       other_piece.reload
-      expect(other_piece.captured).to eq true
+      expect(other_piece.captured!).to eq true
     end
   end
 end
