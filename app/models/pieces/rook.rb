@@ -4,8 +4,7 @@ class Rook < Piece
     return false unless super(x_destination, y_destination)
     x_diff_val = diff(x_destination, x_position)
     y_diff_val = diff(y_destination, y_position)
-    # return false if King tries moving more than 1 square in any direction
-    return false if x_diff_val > 0 && y_diff_val > 0
-    true
+    # return false if Rook tries to move in more than one direction at the time
+    !(x_diff_val > 0 && y_diff_val > 0)
   end
 end
