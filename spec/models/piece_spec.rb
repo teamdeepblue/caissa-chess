@@ -66,9 +66,9 @@ RSpec.describe Piece, type: :model do
     end
   end
 
-  describe '.move_to!' do
+  # describe '.move_to!' do
 
-  end
+  # end
 
 
 
