@@ -55,7 +55,7 @@ class Piece < ActiveRecord::Base
     return false if x_destination == x_position && y_destination == y_position
     return false if !(0..7).cover?(x_destination) || !(0..7).cover?(y_destination)
     return false if game.occupied?(x_destination, y_destination) && game.find_piece(x_destination, y_destination).player_id == self.player_id
-    return true if knight
+    return true if type == :knight
     !obstructed?(x_destination, y_destination)
   end
 

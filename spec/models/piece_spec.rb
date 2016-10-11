@@ -2,14 +2,14 @@ require 'rails_helper'
 
 RSpec.describe Piece, type: :model do
   before do
-    Piece.create(game_id: game.id, x_position: 5, y_position: 0)
+    Piece.create(game_id: game.id, player_id: 1, x_position: 5, y_position: 0)
     Piece.create(game_id: game.id, x_position: 0, y_position: 6)
-    Piece.create(game_id: game.id, x_position: 4, y_position: 4)
+    Piece.create(game_id: game.id, player_id: 2, x_position: 4, y_position: 4)
   end
   it_behaves_like 'Piece'
 
   let(:game) { create :game }
-  let(:piece) { Piece.create(game_id: game.id, x_position: 0, y_position: 0) }
+  let(:piece) { Piece.create(game_id: game.id, player_id: 1, x_position: 0, y_position: 0) }
 
   describe '.obstructed?' do
 
@@ -50,24 +50,27 @@ RSpec.describe Piece, type: :model do
     it 'should return true if move is generally valid' do
       expect(piece.valid_move?(2, 0)).to eq true
     end
-  end
 
-  it 'should return false if destination is occupied and player ids are the same' do
-    king = create(:piece, player_id: 1, x_position: 4, y_position: 1)
-    bishop = create(:piece, player_id: 1, x_position: 4, y_position: 2)
-    expect(king.valid_move? 4, 2).to eq false
+    it 'should return false if destination is occupied and player ids are the same' do
+      expect(piece.valid_move?(5, 0)).to eq false 
+    end
 
-  end
+    it 'should return true if destination is occupied and player ids are not the same' do
+      expect(piece.valid_move?(4, 4)).to eq true 
+    end
 
-  describe '.diff' do
-    it 'should return a positive value' do
-      expect(piece.diff(3, piece.x_position)).to eq 3
+    describe '.diff' do
+      it 'should return a positive value' do
+        expect(piece.diff(3, piece.x_position)).to eq 3
+      end
     end
   end
 
-  describe '.capture_piece' do
-    it 'should be able to capture a piece' do
-      expect(piece.is_occupied?(2, 6)).to eq false
-    end
+  describe '.move_to!' do
+
   end
+
+
+
+  
 end
