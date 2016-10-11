@@ -5,6 +5,9 @@ RSpec.describe Piece, type: :model do
 
   let(:game) { create :game }
   let(:piece) { Piece.create(game_id: game.id, x_position: 0, y_position: 0) }
+  let(:piece2) { Piece.create(game_id: game.id, x_position: 7, y_position: 4) }
+  let(:piece3) { Piece.create(game_id: game.id, x_position: 4, y_position: 7) }
+  let(:piece4) { Piece.create(game_id: game.id, x_position: 7, y_position: 7) }
 
   describe '.obstructed?' do
     before do
@@ -35,6 +38,19 @@ RSpec.describe Piece, type: :model do
 
     it 'should not detect an obstructing piece diagonally' do
       expect(piece.obstructed?(2, 2)).to be false
+    end
+
+    # added examples using piece2
+    it 'should detect an obstructing piece horizontally' do
+      expect(piece2.obstructed?(2, 4)).to be true
+    end
+
+    it 'should detect an obstructing piece vertically' do
+      expect(piece3.obstructed?(4, 2)).to be true
+    end
+
+    it 'should detect an obstructing piece diagonally' do
+      expect(piece4.obstructed?(2, 2)).to be true
     end
   end
 
