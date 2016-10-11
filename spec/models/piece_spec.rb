@@ -4,12 +4,12 @@ RSpec.describe Piece, type: :model do
   before do
     Piece.create(game_id: game.id, player_id: 1, x_position: 5, y_position: 0)
     Piece.create(game_id: game.id, x_position: 0, y_position: 6)
-    Piece.create(game_id: game.id, player_id: 2, x_position: 4, y_position: 4)
   end
   it_behaves_like 'Piece'
 
   let(:game) { create :game }
   let(:piece) { Piece.create(game_id: game.id, player_id: 1, x_position: 0, y_position: 0) }
+  let(:other_piece) { Piece.create(game_id: game.id, player_id: 2, x_position: 4, y_position: 4) }
 
   describe '.obstructed?' do
     it 'should detect an obstructing piece horizontally' do
@@ -65,7 +65,31 @@ RSpec.describe Piece, type: :model do
     end
   end
 
-  # describe '.move_to!' do
+  describe '.move_to!' do
+    let(:game) { create :game }
+    let(:piece) { Piece.create(game_id: game.id, player_id: 1, x_position: 0, y_position: 0) }
+    let(:other_piece) { Piece.create(game_id: game.id, player_id: 2, x_position: 0, y_position: 4) }
 
-  # end
+    it 'should validate that moving pieces x,y values are updated' do
+      expect(piece.move_to!(0, 1)).to eq true
+      expect(piece.x_position).to eq 0
+      expect(piece.y_position).to eq 1
+    end
+
+    it 'should not move the piece if the move is invalid' do
+      x_position = piece.x_position
+      y_position = piece.y_position
+      expect(piece.move_to!(1, 5)).to eq false
+      expect(piece.x_position).to eq x_position
+      expect(piece.y_position).to eq y_position
+    end
+
+    it 'should mark a captured piece as captured' do
+      expect(piece.move_to!(0, 4)).to eq true
+      expect(piece.x_position).to eq 0
+      expect(piece.y_position).to eq 4
+      other_piece.reload
+      expect(other_piece.captured).to eq true
+    end
+  end
 end

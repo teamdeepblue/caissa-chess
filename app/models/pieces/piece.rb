@@ -33,8 +33,6 @@ class Piece < ActiveRecord::Base
     Piece.active.where(game_id: game.id, y_position: y, x_position: x).exists?
   end
 
-# rubocop:enable all
-
   def moving_horizontally?(y_destination)
     y_position == y_destination
   end
@@ -51,13 +49,15 @@ class Piece < ActiveRecord::Base
   # then determines if the destination square is within the board boundaries
   # returns false if the destination is occupied and the moving piece and destination piece player_id's are the same
   # then (unless piece is a knight) determines if the piece is obstructed
-  def valid_move?(x_destination, y_destination)
+  def valid_move?(x_destination, y_destination, knight = false)
     return false if x_destination == x_position && y_destination == y_position
     return false if !(0..7).cover?(x_destination) || !(0..7).cover?(y_destination)
     return false if game.occupied?(x_destination, y_destination) && game.find_piece(x_destination, y_destination).player_id == player_id
-    return true if type == :knight
+    return true if knight
     !obstructed?(x_destination, y_destination)
   end
+
+  # rubocop:enable all
 
   # returns absolute value of destination coord - current coord
   def diff(destination, current)
