@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :pawn do
-    x_position 4
+    x_position 1
     y_position 1
     game
     player

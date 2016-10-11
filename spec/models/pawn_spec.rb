@@ -5,7 +5,7 @@ RSpec.describe Pawn, type: :model do
 
   let(:game) { FactoryGirl.create(:game) }
   let(:white) { FactoryGirl.create(:player, game: game) }
-  let(:black) { FactoryGirl.create(:player, color: 'black', game: game) }
+  let(:black) { FactoryGirl.create(:player, color: :black, game: game) }
   let(:white_pawn) { FactoryGirl.create(:pawn, player: white, game: game) }
   let(:black_pawn) { FactoryGirl.create(:pawn, player: black, y_position: 6, game: game) }
 
