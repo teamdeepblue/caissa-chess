@@ -53,8 +53,8 @@ RSpec.describe Piece, type: :model do
   end
 
   it 'should return false if destination is occupied and player ids are the same' do
-    king = create :piece, player_id: 1, x_position: 4, y_position: 1
-    bishop = create :piece, player_id: 1, x_position: 4, y_position: 2
+    king = create(:piece, player_id: 1, x_position: 4, y_position: 1)
+    bishop = create(:piece, player_id: 1, x_position: 4, y_position: 2)
     expect(king.valid_move? 4, 2).to eq false
 
   end

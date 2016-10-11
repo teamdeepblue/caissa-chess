@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20161005192801) do
-=======
 ActiveRecord::Schema.define(version: 20161006004633) do
->>>>>>> cdff3cca2a87873bf332e63ad369fb0491645941
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,15 +27,9 @@ ActiveRecord::Schema.define(version: 20161006004633) do
     t.string   "type"
     t.integer  "x_position"
     t.integer  "y_position"
-<<<<<<< HEAD
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.boolean  "captured",   default: false
-=======
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "game_id"
->>>>>>> cdff3cca2a87873bf332e63ad369fb0491645941
   end
 
   create_table "players", force: :cascade do |t|
