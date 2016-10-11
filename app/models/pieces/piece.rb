@@ -54,7 +54,7 @@ class Piece < ActiveRecord::Base
   def valid_move?(x_destination, y_destination)
     return false if x_destination == x_position && y_destination == y_position
     return false if !(0..7).cover?(x_destination) || !(0..7).cover?(y_destination)
-    return false if game.occupied?(x_destination, y_destination) && game.find_piece(x_destination, y_destination).player_id == self.player_id
+    return false if game.occupied?(x_destination, y_destination) && game.find_piece(x_destination, y_destination).player_id == player_id
     return true if type == :knight
     !obstructed?(x_destination, y_destination)
   end
@@ -70,17 +70,17 @@ class Piece < ActiveRecord::Base
   def move_to!(x_destination, y_destination)
     return false unless valid_move?(x_destination, y_destination)
     capture_piece(x_destination, y_destination)
-    self.update_attributes(x_position: x_destination, y_position: y_destination)
+    update_attributes(x_position: x_destination, y_position: y_destination)
   end
 
   def capture_piece(x_destination, y_destination)
     return false unless game.occupied?(x_destination, y_destination)
-    self.game.find_piece(x_destination, y_destination).captured!
-    return true
+    game.find_piece(x_destination, y_destination).captured!
+    true
   end
 
   # updates database if captured
   def captured!
-    self.update_attributes(captured: true)
+    update_attributes(captured: true)
   end
 end

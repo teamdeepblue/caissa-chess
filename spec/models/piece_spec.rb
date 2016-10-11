@@ -12,7 +12,6 @@ RSpec.describe Piece, type: :model do
   let(:piece) { Piece.create(game_id: game.id, player_id: 1, x_position: 0, y_position: 0) }
 
   describe '.obstructed?' do
-
     it 'should detect an obstructing piece horizontally' do
       expect(piece.obstructed?(7, 0)).to be true
     end
@@ -52,11 +51,11 @@ RSpec.describe Piece, type: :model do
     end
 
     it 'should return false if destination is occupied and player ids are the same' do
-      expect(piece.valid_move?(5, 0)).to eq false 
+      expect(piece.valid_move?(5, 0)).to eq false
     end
 
     it 'should return true if destination is occupied and player ids are not the same' do
-      expect(piece.valid_move?(4, 4)).to eq true 
+      expect(piece.valid_move?(4, 4)).to eq true
     end
 
     describe '.diff' do
@@ -69,8 +68,4 @@ RSpec.describe Piece, type: :model do
   # describe '.move_to!' do
 
   # end
-
-
-
-  
 end
