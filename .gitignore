@@ -21,4 +21,6 @@ app/models/.byebug_history
 
 # Ignore coverage files.
 coverage/*
+/coverage/.last_run.json
+/coverage/.resultset.json
 .DS_Store
