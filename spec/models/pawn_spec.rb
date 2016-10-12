@@ -4,8 +4,8 @@ RSpec.describe Pawn, type: :model do
   it_behaves_like 'Piece'
 
   let(:game) { FactoryGirl.create(:game) }
-  let(:white) { FactoryGirl.create(:player, color: "white", game: game) }
-  let(:black) { FactoryGirl.create(:player, color: "black", game: game) }
+  let(:white) { FactoryGirl.create(:player, color: 'white', game: game) }
+  let(:black) { FactoryGirl.create(:player, color: 'black', game: game) }
   let(:white_pawn) { FactoryGirl.create(:pawn, player: white, y_position: 1, x_position: 4, game: game) }
   let(:black_pawn) { FactoryGirl.create(:pawn, player: black, y_position: 6, x_position: 4, game: game) }
 
