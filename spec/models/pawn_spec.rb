@@ -15,6 +15,13 @@ RSpec.describe Pawn, type: :model do
     expect(black_pawn.valid_move?(4, 5)).to eq true
   end
 
+  it 'should return true if move is 1 spot vertical forward with other piece present' do
+    FactoryGirl.create(:piece, game: game, x_position: 4, y_position: 2)
+    FactoryGirl.create(:piece, game: game, x_position: 4, y_position: 5)
+    expect(white_pawn.valid_move?(4, 2)).to eq false
+    expect(black_pawn.valid_move?(4, 5)).to eq false
+  end
+
   it 'should return false if move is 1 spot vertical backward' do
     expect(white_pawn.valid_move?(4, 0)).to eq false
     expect(black_pawn.valid_move?(4, 6)).to eq false
