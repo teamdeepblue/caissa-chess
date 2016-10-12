@@ -21,7 +21,7 @@ RSpec.describe PiecesController, type: :controller do
     context 'with invalid status' do
       Game.delete_all
       game3 = FactoryGirl.create(:game)
-      player3 = FactoryGirl.create(:player)
+      player3 = FactoryGirl.create(:player, game: game3)
       let(:piece) { FactoryGirl.create(:piece, player_id: player3.id, game_id: game3.id) }
       it 'Raises an exception when more than 32 pieces are created' do
         get :new, game_id: game3.id, player_id: player3.id

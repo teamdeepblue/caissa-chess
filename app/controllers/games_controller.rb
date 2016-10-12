@@ -11,7 +11,7 @@ class GamesController < ApplicationController
 
   def create
     @game = Game.create(game_params)
-    @game.players.create(user: current_user, color: [:black, :white].sample)
+    @game.players.create(user: current_user, color: ["black", "white"].sample)
     redirect_to game_path(@game)
   end
 

@@ -4,10 +4,10 @@ RSpec.describe Pawn, type: :model do
   it_behaves_like 'Piece'
 
   let(:game) { FactoryGirl.create(:game) }
-  let(:white) { FactoryGirl.create(:player, game: game) }
-  let(:black) { FactoryGirl.create(:player, color: :black, game: game) }
-  let(:white_pawn) { FactoryGirl.create(:pawn, player: white, game: game) }
-  let(:black_pawn) { FactoryGirl.create(:pawn, player: black, y_position: 6, game: game) }
+  let(:white) { FactoryGirl.create(:player, color: "white", game: game) }
+  let(:black) { FactoryGirl.create(:player, color: "black", game: game) }
+  let(:white_pawn) { FactoryGirl.create(:pawn, player: white, y_position: 1, x_position: 4, game: game) }
+  let(:black_pawn) { FactoryGirl.create(:pawn, player: black, y_position: 6, x_position: 4, game: game) }
 
   # non-capturing moves
   it 'should return true if move is 1 spot vertical forward' do
@@ -15,7 +15,7 @@ RSpec.describe Pawn, type: :model do
     expect(black_pawn.valid_move?(4, 5)).to eq true
   end
 
-  it 'should return true if move is 1 spot vertical backward' do
+  it 'should return false if move is 1 spot vertical backward' do
     expect(white_pawn.valid_move?(4, 0)).to eq false
     expect(black_pawn.valid_move?(4, 6)).to eq false
   end
@@ -59,7 +59,7 @@ RSpec.describe Pawn, type: :model do
     expect(black_pawn.valid_move?(3, 5)).to eq true
   end
 
-  it 'should return true if move is 2 spot diagonally forward with opposite piece present' do
+  it 'should return false if move is 2 spot diagonally forward with opposite piece present' do
     FactoryGirl.create(:pawn, player: white, game: game, x_position: 3, y_position: 4)
     FactoryGirl.create(:pawn, player: black, game: game, x_position: 3, y_position: 3)
     expect(white_pawn.valid_move?(3, 3)).to eq false
