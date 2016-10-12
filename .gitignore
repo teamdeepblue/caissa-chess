@@ -12,9 +12,6 @@
 !/log/.keep
 /tmp
 
-# Ignore application configuration
-/config/application.yml
-
 # Ignore byebug history.
 .byebug_history
 app/models/.byebug_history
