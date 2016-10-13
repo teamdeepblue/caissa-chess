@@ -6,16 +6,89 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-
+<body> 
   <% if notice.present? %>
     <p class="notice"><%= notice %></p>
   <% end %>
   <% if alert.present? %>
     <p class="alert"><%= alert %></p>
-  <% end %>
+  <% end %> 
 
+<div class="contain-to-grid">
+  <nav class = "top-bar" data-topbar role="navigation"> 
+    <div class="top-bar">
+      <div class="top-bar-title">
+        <span data-responsive-toggle="responsive-menu" data-hide-for="medium">
+          <button class="menu-icon dark" type="button" data-toggle></button>
+        </span>
+        <strong>CAISSA</strong>
+      </div>
+      <div id="responsive-menu">
+        <div class="top-bar-left">
+          <ul class="dropdown menu" data-dropdown-menu>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Play</a></li>
+          </ul>
+        </div>
+        <div class="top-bar-right">
+          <ul class="menu"> 
+          <% if user_signed_in? %> 
+            <li><%= link_to "My Dashboard", "#" %> </li>
+            <li> <%= link_to "Sign Out", destroy_user_session_path %></li>
+          <%else%> 
+            <li> <%= link_to "Log In", user_session_path %> </li>
+            <li><%= link_to "Sign Up", new_user_registration_path %></li> 
+          <%end%> 
+          </ul>
+        </div>
+      </div>
+    </div> 
+  </nav> 
+</div> 
+</body>  
 <%= yield %>
 
-</body>
+<br class="clr" />
+  <div id="footer"> 
+    <div class="row">
+      <div class = "small-3 columns">
+        <b> Team</b>
+        <br />  
+      </div> 
+      <div class = "small-3 columns"> 
+        <b> About </b> 
+        <br/> 
+        <%= link_to "#", "#" %> 
+        <br /> 
+        <%= link_to "Careers", "#" %> 
+        <br />  
+      </div> 
+      <div class = "small-3 columns"> 
+        <b> Contact</b> 
+        <br/> 
+        Our contacts will come here 
+        <br/> 
+        Our contacts will come here 
+        <br/> 
+      </div> 
+      <div class = "small-3 social columns"> 
+        <b> Social </b> 
+        <br /> 
+        <br /> 
+        <%= link_to "#" do %> 
+          <%= image_tag "github.png", class: "social-button" %> 
+        <%end%> 
+        <%= link_to "#" do %> 
+          <%= image_tag "facebook.png", class: "social-button" %> 
+        <%end%> 
+        <%= link_to "#" do %> 
+          <%= image_tag "twitter.png", class: "social-button" %> 
+        <%end%> 
+      </div>
+
+    </div>
+    </div>
+  </div>
+
+
 </html>
