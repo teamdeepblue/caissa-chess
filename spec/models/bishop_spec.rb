@@ -51,19 +51,19 @@ RSpec.describe Bishop, type: :model do
       end
 
       it 'returns false on a true diagonal to the northeast' do
-        expect(bishop.valid_move?(6, 0)).to eq true
+        expect(bishop.valid_move?(6, 0)).to eq false
       end
 
       it 'returns false on a true diagonal to the southeast' do
-        expect(bishop.valid_move?(7, 7)).to eq true
+        expect(bishop.valid_move?(7, 7)).to eq false
       end
 
       it 'returns false on a true diagonal to the southwest' do
-        expect(bishop.valid_move?(1, 5)).to eq true
+        expect(bishop.valid_move?(1, 5)).to eq false
       end
 
       it 'returns false on a true diagonal to the northwest' do
-        expect(bishop.valid_move?(0, 0)).to eq true
+        expect(bishop.valid_move?(0, 0)).to eq false
       end
     end
   end

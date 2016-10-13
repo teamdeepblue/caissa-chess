@@ -88,11 +88,12 @@ RSpec.describe GamesController, type: :controller do
     end
 
     it 'should give an overview of games with only one player' do
+      Game.delete_all
       game1 = FactoryGirl.create(:game)
       game2 = FactoryGirl.create(:game)
-      FactoryGirl.create(:player, game_id: game1.id)
-      FactoryGirl.create(:player, game_id: game2.id)
-      FactoryGirl.create(:player, game_id: game2.id)
+      FactoryGirl.create(:player, game: game1)
+      FactoryGirl.create(:player, game: game2)
+      FactoryGirl.create(:player, game: game2)
       get :index
       expect(assigns(:games)).to eq([game1])
       # game 2 already 2 players, game 3 has no players (should not be possible in normal flow)
