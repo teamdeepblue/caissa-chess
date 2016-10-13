@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :player do
-    color 'Black'
+    color 'white'
+    game
   end
 end
