@@ -1,3 +1,70 @@
 <h1>Game Show page</h1>
 
-<p>Game name: <%= @game.name %></p>
+<p>Game name: <%= @game.name %></p> 
+
+<% array = ["A","B","C","D","E","F","G","H"] %> 
+<% unicodefig = ["&#9820;","&#9822;", "&#9821;", "&#9819;", "&#9818;", "&#9821;", "&#9822;", "&#9820;"] %>
+<table id = "ChessBoard"> 
+<% 8.times.each do |number| %> 
+	<% if number% 2 ==0 %>  
+		<tr> 
+			<% if number == 6 %> 
+				<% 8.times.each do |square| %>  
+					<% if square %2 == 0 %> 
+						<td class = "white wp" id = "<%= array[square]%><%= number+1 %>">&#9821;</td> 
+					<% else %> 
+						<td class = "black wp" id = "<%= array[square]%><%= number+1 %>">&#9821;</td> 
+					<%end%> 
+				<%end%>  
+			<% elsif number == 0 %> 
+					<% 8.times.each do |square| %>  
+						<% if square %2 == 0 %> 
+							<td class = "white bp" id = "<%= array[square]%><%= number+1 %>"><%= unicodefig[square].html_safe %></td> 
+						<% else %> 
+							<td class = "black bp" id = "<%= array[square]%><%= number+1 %>"><%= unicodefig[square].html_safe %></td> 
+						<%end%> 
+					<%end%> 
+			<%else%> 
+				<% 8.times.each do |square| %>  
+					<% if square %2 == 0 %> 
+						<td class = "white" id = "<%= array[square]%><%= number+1 %>"></td> 
+					<% else %> 
+						<td class = "black" id = "<%= array[square]%><%= number+1 %>"></td> 
+					<%end%> 
+				<%end%>
+			<%end%> 
+		<tr> 
+	
+	<% else %> 
+		<tr> 
+			<% if number == 1 %> 
+				<% 8.times.each do |square| %>  
+					<% if square %2 == 0 %> 
+						<td class = "black bp" id = "<%= array[square]%><%= number+1 %>">&#9821;</td> 
+					<% else %> 
+						<td class = "white bp" id = "<%= array[square]%><%= number+1 %>">&#9821;</td> 
+					<%end%> 
+				<%end%>  
+			<% elsif number ==7 %> 
+				<% 8.times.each do |square| %> 
+					<% if square % 2 == 0 %> 
+						<td class = "black wp" id = "<%= array[square] %> <%= number+1 %>"> <%= unicodefig[square].html_safe %> </td> 
+					<%else%> 
+						<td class = "white wp" id = "<%= array[square] %> <%= number+1 %>"> <%= unicodefig[square].html_safe %> </td> 
+					<%end%> 
+				<%end%> 
+			<%else%> 
+				<% 8.times.each do |square| %>  
+					<% if square %2 == 0 %> 
+						<td class = "black" id = "<%= array[square]%><%= number+1 %>"></td> 
+					<% else %> 
+						<td class = "white" id = "<%= array[square]%><%= number+1 %>"></td> 
+					<%end%> 
+				<%end%>
+			<%end%> 
+		</tr> 
+	<%end%> 
+<%end%> 
+</table> 
+
+
