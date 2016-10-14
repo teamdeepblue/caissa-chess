@@ -109,4 +109,10 @@ RSpec.describe Piece, type: :model do
       expect(other_piece.captured!).to eq true
     end
   end
+
+  describe '.captured!' do
+    it 'returns true if the returned value is boolean' do
+      expect(piece.captured!).to be_boolean
+    end
+  end
 end

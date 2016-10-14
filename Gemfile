@@ -46,6 +46,9 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
 
   gem 'factory_girl_rails', '~> 4.0'
+
+  # Use to test for the presence of boolean values
+  gem 'rspec_boolean'
 end
 
 # Access an IRB console on exception pages or by using <%= console %> in views
