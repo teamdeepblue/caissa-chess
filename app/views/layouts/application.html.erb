@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Caissachessapp</title>
+<head >
+  <title>Caissa Chess App</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+  <%= csrf_meta_tags %> 
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 </head>
 <body> 
   <% if notice.present? %>
@@ -60,8 +61,6 @@
         <br/> 
         <%= link_to "#", "#" %> 
         <br /> 
-        <%= link_to "Careers", "#" %> 
-        <br />  
       </div> 
       <div class = "small-3 columns"> 
         <b> Contact</b> 
@@ -73,17 +72,10 @@
       </div> 
       <div class = "small-3 social columns"> 
         <b> Social </b> 
-        <br /> 
-        <br /> 
-        <%= link_to "#" do %> 
-          <%= image_tag "#", class: "social-button" %> 
-        <%end%> 
-        <%= link_to "#" do %> 
-          <%= image_tag "#", class: "social-button" %> 
-        <%end%> 
-        <%= link_to "#" do %> 
-          <%= image_tag "#", class: "social-button" %> 
-        <%end%> 
+        </br>
+        <%= link_to "#" do  %> 
+          <i class="fa fa-github fa-2x" aria-hidden="true"></i> 
+        <%end%>
       </div>
 
     </div>
