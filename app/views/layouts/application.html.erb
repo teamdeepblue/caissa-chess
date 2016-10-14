@@ -1,21 +1,86 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Caissachessapp</title>
+<head >
+  <title>Caissa Chess App</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+  <%= csrf_meta_tags %> 
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 </head>
-<body>
-
+<body> 
   <% if notice.present? %>
     <p class="notice"><%= notice %></p>
   <% end %>
   <% if alert.present? %>
     <p class="alert"><%= alert %></p>
-  <% end %>
+  <% end %> 
 
+<div class="contain-to-grid">
+  <nav class = "top-bar" data-topbar role="navigation"> 
+    <div class="top-bar">
+      <div class="top-bar-title">
+        <span data-responsive-toggle="responsive-menu" data-hide-for="medium">
+          <button class="menu-icon dark" type="button" data-toggle></button>
+        </span>
+        <strong>CAISSA</strong>
+      </div>
+      <div id="responsive-menu">
+        <div class="top-bar-left">
+          <ul class="dropdown menu" data-dropdown-menu>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Play</a></li>
+          </ul>
+        </div>
+        <div class="top-bar-right">
+          <ul class="menu"> 
+          <% if user_signed_in? %> 
+            <li><%= link_to "My Dashboard", "#" %> </li>
+            <li> <%= link_to "Sign Out", destroy_user_session_path %></li>
+          <%else%> 
+            <li> <%= link_to "Log In", user_session_path %> </li>
+            <li><%= link_to "Sign Up", new_user_registration_path %></li> 
+          <%end%> 
+          </ul>
+        </div>
+      </div>
+    </div> 
+  </nav> 
+</div> 
+</body>  
 <%= yield %>
 
-</body>
+<br class="clr" />
+  <div id="footer"> 
+    <div class="row">
+      <div class = "small-3 columns">
+        <b> Team</b>
+        <br />  
+      </div> 
+      <div class = "small-3 columns"> 
+        <b> About </b> 
+        <br/> 
+        <%= link_to "#", "#" %> 
+        <br /> 
+      </div> 
+      <div class = "small-3 columns"> 
+        <b> Contact</b> 
+        <br/> 
+        Our contacts will come here 
+        <br/> 
+        Our contacts will come here 
+        <br/> 
+      </div> 
+      <div class = "small-3 social columns"> 
+        <b> Social </b> 
+        </br>
+        <%= link_to "#" do  %> 
+          <i class="fa fa-github fa-2x" aria-hidden="true"></i> 
+        <%end%>
+      </div>
+
+    </div>
+    </div>
+  </div>
+
+
 </html>
