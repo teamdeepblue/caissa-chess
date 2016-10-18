@@ -89,7 +89,6 @@ class Piece < ActiveRecord::Base
   def capture_piece(x_destination, y_destination)
     return false unless game.occupied?(x_destination, y_destination)
     return true if game.find_piece(x_destination, y_destination).captured!
-    true
   end
 
   # updates database if captured
