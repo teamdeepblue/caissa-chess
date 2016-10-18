@@ -4,7 +4,7 @@ class Game < ActiveRecord::Base
 
   # returns an occupying piece or nil
   def occupied?(x_destination, y_destination)
-    pieces.active.where(y_position: y_destination, x_position: x_destination).any?
+    pieces.active.where(y_position: y_destination, x_position: x_destination).any?     
   end
 
   # returns the piece to be captured

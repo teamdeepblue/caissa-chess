@@ -83,9 +83,9 @@ RSpec.describe Piece, type: :model do
   end
 
   describe '.move_to!' do
-    let(:game) { create :game }
-    let(:piece) { Piece.create(game_id: game.id, player_id: 1, x_position: 0, y_position: 0) }
-    let(:other_piece) { Piece.create(game_id: game.id, player_id: 2, x_position: 0, y_position: 4) }
+    let!(:game) { create :game }
+    let!(:piece) { Piece.create(game_id: game.id, player_id: 1, x_position: 0, y_position: 0) }
+    let!(:other_piece) { Piece.create(game_id: game.id, player_id: 2, x_position: 0, y_position: 4) }
 
     it 'should validate that moving pieces x,y values are updated' do
       expect(piece.move_to!(0, 1)).to eq true
@@ -106,7 +106,7 @@ RSpec.describe Piece, type: :model do
       expect(piece.x_position).to eq 0
       expect(piece.y_position).to eq 4
       other_piece.reload
-      expect(other_piece.captured!).to eq true
+      expect(other_piece.captured).to eq true
     end
   end
 end
