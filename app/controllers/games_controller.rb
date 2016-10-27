@@ -20,13 +20,20 @@ class GamesController < ApplicationController
     return render text: 'Game Not Found', status: :not_found if @game.blank?
   end
 
-  # def update
-  #   @game = Game.find(params[:id])
-  #   current_player.update_attribute(:game_id, @game.id)
-  # end
+  def get_pieces
+    @game = Game.find_by_id(params[:id])
+    return render text: 'Game Not Found', status: :not_found if @game.blank?   
+    render json: Piece.where(game_id: @game.id, active: true)
+  end
+
+  def current_board
+    render json: Piece.where(game_id: @game.id)
+  end
+
   private
 
   def game_params
     params.require(:game).permit(:name)
   end
+
 end

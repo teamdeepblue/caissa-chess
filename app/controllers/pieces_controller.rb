@@ -1,4 +1,5 @@
 class PiecesController < ApplicationController
+  before_action :authenticate_user!, only: [:update]
   def new
     @game = Game.find_by_id(params[:game_id])
     set_white_pieces
@@ -6,7 +7,20 @@ class PiecesController < ApplicationController
     render json: Piece.where(game_id: @game.id)
   end
 
+  def update
+    @game = Game.find_by_id(params[:game_id])
+    @piece = @game.pieces.find_by_id(params[:id])
+    x_destination = piece_params([:x_position])
+    y_destination = piece_params([:y_position])
+    (flash[:error] = "Not a valid move") unless @piece.move_to!(x_destination, y_destination)
+    redirect_to game_path(@game)
+  end
+
   private
+
+  def piece_params
+    params.require(:piece).permit(:x_position, :y_position)
+  end
 
   def set_white_pieces
     white_pieces = %w(Rook Knight Bishop King Queen Bishop Knight Rook)

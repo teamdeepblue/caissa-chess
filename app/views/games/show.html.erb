@@ -1,21 +1,20 @@
 <h1>Game Show page</h1>
 
-<p>Game name: <%= @game.name %></p> 
+<p>Game &quot; name: <%= @game.name %></p> 
 
 <% array = ["A","B","C","D","E","F","G","H"] %>
-<% piece_array = @game.pieces %> 
-<% white_pieces = {:king => "&#9812;", :queen => "&#9813;", :rook => "&#9814;", :bishop => "&#9815;", :knight => "&#9816;", :pawn => "&#9817;"} %>
-<% black_pieces = {:king => "&#9818;", :queen => "&#9819;", :rook => "&#9820;", :bishop => "&#9821;", :knight => "&#9822;", :pawn => "&#9823;"} %>
+
+<div id="test"></div>
+
+<%= javascript_tag do %>
+  var game_id = <%= @game.id %>;
+  var pieces = getPieces(game_id);
+<% end %>
 
 <table id = "ChessBoard"> 
-	<% 8.times.each do |x| %>
-		<tr> 
-			<% 8.times.each do |y| %>
-				<% current_piece = piece_array.detect { |piece| piece.x_position == x and piece.y_position == y} %>
-				<td class = <%= x % 2 == 0 && y % 2 == 0 || x % 2 != 0 && y % 2 != 0 ? "white" : "black" %> ><% current_piece.nil? ? "" : (current_piece.player.color == :white ? white_pieces[current_piece.type] : black_pieces[current_piece.type] ) %></td>
-			<% end %>
-		<tr> 
-	<% end %>
+
 </table> 
+
+
 
 

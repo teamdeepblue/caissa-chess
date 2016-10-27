@@ -6,6 +6,10 @@ class Piece < ActiveRecord::Base
   validates :x_position, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 7 }, allow_nil: false
   validates :y_position, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 7 }
 
+  def as_json(options={})
+    super(options.merge({:methods => :type}))
+  end
+  
   def validate_max_pieces
     errors[:base] << 'Only 32 pieces are allowed per game.' if ((Piece.count).fdiv(Game.count)) >= 32
     errors.empty?
