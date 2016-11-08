@@ -1,15 +1,16 @@
 
 
-$(function () {
+$(document).ready(function () {
 
   function getPieces (game_id) {
-    $.get("/games/" + game_id + "/get_pieces").success( function (data) {
-      console.log(data);
-    });
-  }
-  console.log('test1');
-  function fillBoard (pieces) {
+    $.get("/games/" + game_id + "/get_pieces")
+      .success( function (data) {
+        fillBoard(data);
+      });
 
+    }
+
+  function fillBoard (pieces) {
     //Create the hashes to map pieces to there html code
     var whitePieces = {};
     var blackPieces = {};
@@ -18,14 +19,17 @@ $(function () {
       whitePieces[element] = "&#" + (9812 + index) + ";";
       blackPieces[element] = "&#" + (9818 + index) + ";";
     });
-    // var pieces = $.parseJSON(piecesString);
-    pieces.forEach( function(element, index) {
-      console.log(element);
+    pieces.forEach( function(element) {
+      
     });
-    // $('#test').html(pieces);pie
-    //Convert the ruby pieces to a javascript 2D array
 
   }
 
+  $('#test').ready(function () {
+    var path = window.location.pathname.split('/');
+    var game_id = parseInt(path[path.length -1]);
+    var pieces = getPieces(game_id);
+
+});
 
 });

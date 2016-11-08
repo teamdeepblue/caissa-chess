@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'games#index'
+  scope '/games' do
+    scope '/:game_id' do
+      get '/get_pieces' => 'games#get_pieces'
+    end
+  end
   resources :games, only: [:new, :create, :show, :update] do
     resources :pieces, only: [:update]
     resources :players, only: [] do

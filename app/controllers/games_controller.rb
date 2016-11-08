@@ -21,9 +21,11 @@ class GamesController < ApplicationController
   end
 
   def get_pieces
-    @game = Game.find_by_id(params[:id])
-    return render text: 'Game Not Found', status: :not_found if @game.blank?   
-    render json: Piece.where(game_id: @game.id, active: true)
+    @game = Game.find_by_id(params[:game_id])
+    return render text: 'Game Not Found', status: :not_found if @game.blank?
+    respond_to do |format|
+    format.json { render json: Piece.where(game_id: @game.id) }
+    end   
   end
 
   def current_board
